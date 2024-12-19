@@ -1,5 +1,7 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -7,6 +9,7 @@ plugins {
     alias(libs.plugins.kotlinxSerialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kmpNativeCoroutines)
+    id("com.codingfeline.buildkonfig") version "0.15.2"
 }
 
 kotlin {
@@ -60,5 +63,14 @@ android {
     }
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
+    }
+}
+
+buildkonfig {
+    packageName = "org.example.peliquotes"
+
+    defaultConfigs {
+        val baseUrl: String = gradleLocalProperties(rootDir, providers).getProperty("BASE_URL")
+        buildConfigField(Type.STRING, "BASE_URL", baseUrl)
     }
 }

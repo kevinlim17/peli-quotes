@@ -4,6 +4,7 @@ import org.example.peliquotes.model.Book
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import org.example.peliquotes.BuildKonfig.BASE_URL
 import kotlin.coroutines.cancellation.CancellationException
 
 interface BookAPI {
@@ -24,10 +25,6 @@ class KtorBookAPI(private val client: HttpClient) : BookAPI {
             e.printStackTrace()
             emptyList()
         }
-    }
-
-    companion object {
-        private const val BASE_URL = "https://otterious.com/book"
     }
 }
 
