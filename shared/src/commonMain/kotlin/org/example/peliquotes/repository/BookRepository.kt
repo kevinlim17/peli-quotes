@@ -4,7 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import org.example.peliquotes.model.Book
+import org.example.peliquotes.model.BookResponse
 import org.example.peliquotes.network.BookAPI
 
 class BookRepository(
@@ -24,5 +24,5 @@ class BookRepository(
         bookStorage.saveBookObjects(bookAPI.getBookData(title = title))
     }
 
-    fun getBookData(): Flow<List<Book>> = bookStorage.getBookData()
+    fun getBookData(): Flow<List<BookResponse>> = bookStorage.getBookData()
 }

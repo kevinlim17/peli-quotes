@@ -1,6 +1,6 @@
 package org.example.peliquotes.network
 
-import org.example.peliquotes.model.Book
+import org.example.peliquotes.model.BookResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -11,11 +11,11 @@ import org.example.peliquotes.util.NetworkError
 import org.example.peliquotes.util.NetworkResult
 
 interface BookSearchAPI {
-    suspend fun getSearchData(title: String): NetworkResult<List<Book>, NetworkError>
+    suspend fun getSearchData(title: String): NetworkResult<List<BookResponse>, NetworkError>
 }
 
 class KtorBookSearchAPI(private val client: HttpClient) : BookSearchAPI {
-    override suspend fun getSearchData(title: String): NetworkResult<List<Book>, NetworkError> {
+    override suspend fun getSearchData(title: String): NetworkResult<List<BookResponse>, NetworkError> {
         val response = try {
             client.get("${BASE_URL}/book") {
                 url {
