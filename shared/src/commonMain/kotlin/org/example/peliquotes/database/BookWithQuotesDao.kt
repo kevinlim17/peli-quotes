@@ -9,5 +9,5 @@ import org.example.peliquotes.model.BookWithQuotes
 interface BookWithQuotesDao {
     @Transaction
     @Query("SELECT * FROM book_record WHERE book_id = :bookId")
-    suspend fun getBookWithQuotesByBookId(bookId: Long): List<BookWithQuotes>
+    suspend fun getBookWithQuotesByBookId(bookId: Long): BookWithQuotes
 }
