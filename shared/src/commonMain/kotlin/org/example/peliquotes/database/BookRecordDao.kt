@@ -29,6 +29,10 @@ interface BookRecordDao {
     suspend fun readByGenre(genre: String): List<BookRecord>
 
     @Transaction
+    @Query("SELECT COUNT(*) as count FROM book_record")
+    suspend fun readNumberOfBooks(): Int
+
+    @Transaction
     @Update
     suspend fun updateBookRecord(bookRecord: BookRecord)
 
